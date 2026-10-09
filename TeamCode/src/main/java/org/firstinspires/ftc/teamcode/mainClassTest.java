@@ -26,9 +26,9 @@ public class mainClassTest extends OpMode {
 
     @Override
     public void loop() {
-        drivetrainTest.drive(gamepad1);
+        drivetrainTest.manualControllerDrive(gamepad1);
         shooterTest.turretManualControl(gamepad1);
-        shooterTest.hoodManuelControl(gamepad1);
+        shooterTest.hoodManualControl(gamepad1);
         shooterTest.flywheelManualControl(gamepad1);
         intakeTest.intakeManualControl(gamepad1);
         transferTest.transferManualControl(gamepad1);

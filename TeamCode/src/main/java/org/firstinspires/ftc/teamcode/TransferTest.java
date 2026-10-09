@@ -5,11 +5,11 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class TransferTest {
 
-    public TransferTest (HardwareMap hardwareMap){
+    public TransferTest(HardwareMap hardwareMap){
 
     }
 
-    public void transferManualControl (Gamepad gamepad1) {
+    public void transferManualControl(Gamepad gamepad1) {
 
     }
 }

@@ -27,7 +27,7 @@ public class DrivetrainTest {
         backRightMotor.setPower(0);
     }
 
-    public void drive(Gamepad gamepad1) {
+    public void manualControllerDrive(Gamepad gamepad1) {
 
         double jy = gamepad1.left_stick_y * gamepad1.left_stick_y * gamepad1.left_stick_y; // Remember, Y stick value is reversed
         double jx = -gamepad1.left_stick_x * -gamepad1.left_stick_x * -gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing

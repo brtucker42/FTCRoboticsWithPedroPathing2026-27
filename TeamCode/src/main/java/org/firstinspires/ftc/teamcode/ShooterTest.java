@@ -7,7 +7,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class ShooterTest {
     DcMotor flywheelMotor;
-
     boolean aPressed = false;
     boolean flywheelOn = false;
 
@@ -42,15 +41,19 @@ public class ShooterTest {
             flywheelMotor.setPower(0);
         }
     }
-    public void hoodManuelControl(Gamepad gamepad1) {
+    public void flywheelAutoControl() {
+
+    }
+    public void hoodManualControl(Gamepad gamepad1) {
+
+    }
+    public void hoodAutoControl() {
 
     }
     public void turretManualControl(Gamepad gamepad1) {
 
     }
-
     public void turretAutoControl() {
 
     }
-
 }
