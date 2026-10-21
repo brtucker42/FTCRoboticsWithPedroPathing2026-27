@@ -40,7 +40,8 @@ public class Autonomous extends OpMode {
         frontRightMotor.setPower(0.5);
         backRightMotor.setPower(0.5);
 
-        sleep(5);
+        // sleep(5);
+
 
     }
 
