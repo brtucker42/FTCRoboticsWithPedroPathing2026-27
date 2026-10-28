@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+/*package org.firstinspires.ftc.teamcode;
 
 
 import com.pedropathing.follower.Follower;
@@ -97,3 +97,4 @@ public class SampleAutoPathing extends OpMode {
 
 
 }
+*/
