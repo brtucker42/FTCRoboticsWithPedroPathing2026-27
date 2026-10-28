@@ -17,22 +17,22 @@ public class mainClassTest extends OpMode {
     @Override
     public void init() {
         drivetrainTest = new DrivetrainTest(hardwareMap);
-        shooterTest = new ShooterTest(hardwareMap);
+        /*shooterTest = new ShooterTest(hardwareMap);
         intakeTest = new IntakeTest(hardwareMap);
         transferTest = new TransferTest(hardwareMap);
         cameraTest = new CameraTest(hardwareMap);
-        odometryTest = new OdometryTest(hardwareMap);
+        odometryTest = new OdometryTest(hardwareMap);*/
     }
 
     @Override
     public void loop() {
         drivetrainTest.manualControllerDrive(gamepad1);
-        shooterTest.turretManualControl(gamepad1);
+        /*shooterTest.turretManualControl(gamepad1);
         shooterTest.hoodManualControl(gamepad1);
         shooterTest.flywheelManualControl(gamepad1);
         intakeTest.intakeManualControl(gamepad1);
         transferTest.transferManualControl(gamepad1);
         cameraTest.getCameraInfo();
-        odometryTest.getOdoPosHeading();
+        odometryTest.getOdoPosHeading();*/
     }
 }

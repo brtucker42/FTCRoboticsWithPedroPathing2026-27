@@ -21,6 +21,11 @@ public class DrivetrainTest {
         frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         frontLeftMotor.setPower(0);
         backLeftMotor.setPower(0);
         frontRightMotor.setPower(0);
@@ -30,8 +35,8 @@ public class DrivetrainTest {
     public void manualControllerDrive(Gamepad gamepad1) {
 
         double jy = gamepad1.left_stick_y * gamepad1.left_stick_y * gamepad1.left_stick_y; // Remember, Y stick value is reversed
-        double jx = -gamepad1.left_stick_x * -gamepad1.left_stick_x * -gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
-        double rx = gamepad1.right_stick_x * gamepad1.right_stick_x * gamepad1.right_stick_x * 0.75; // Decrease rotation sensitivity
+        double jx = -gamepad1.left_stick_x * -gamepad1.left_stick_x * -gamepad1.left_stick_x; // Counteract imperfect strafing
+        double rx = -gamepad1.right_stick_x * -gamepad1.right_stick_x * -gamepad1.right_stick_x * 0.75; // Decrease rotation sensitivity
 
         double denominator = Math.max(Math.abs(jy) + Math.abs(jx) + Math.abs(rx), 1);
         double frontLeftPower  = (jy + jx + rx) / denominator;
