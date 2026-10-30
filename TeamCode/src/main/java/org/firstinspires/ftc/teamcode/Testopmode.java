@@ -32,7 +32,7 @@ public class Testopmode extends OpMode {
 
     @Override
     public void init() {
-        flywheelMotor = hardwareMap.get(DcMotorEx.class, "motor");
+        flywheelMotor = hardwareMap.get(DcMotorEx.class, "flywheelMotor");
         flywheelMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         flywheelMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
