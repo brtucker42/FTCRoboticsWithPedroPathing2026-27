@@ -6,6 +6,7 @@ import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.pedropathing.utils.Timer;
+import com.pedropathing.paths.Path
 
 import org.firstinspires.ftc.teamcode.pedro.Constants;
 
@@ -30,14 +31,14 @@ public class SampleAutoPathing extends OpMode {
 
     private final Pose shootPose = new Pose(20, 70, Math.toRadians(0));
 
-    private PathChain driveStartPosShootPos;
+    private Path driveStartPosShootPos;
 
     public void buildPaths() {
         // put in cords for starting pose - ending pose
         driveStartPosShootPos = follower.pathBuilder()
                 .addPath(new BezierLine (startPose, shootPose))
                 .setLinearHeadingInterpolation(startPose.getHeading(), shootPose.getHeading())
-                .build;
+                .build();
 
     }
 
@@ -84,7 +85,11 @@ public class SampleAutoPathing extends OpMode {
 
     }
 
-    public void start() {}
+    public void start() {
+
+
+
+    }
 
     @Override
     public void loop() {

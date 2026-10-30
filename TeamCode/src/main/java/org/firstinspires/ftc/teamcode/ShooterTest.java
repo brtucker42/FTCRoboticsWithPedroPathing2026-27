@@ -35,7 +35,7 @@ public class ShooterTest {
 
         // Set motor
         if (flywheelOn){
-            flywheelMotor.setPower(1);
+            flywheelMotor.setPower(0.5);
         }
         else {
             flywheelMotor.setPower(0);
