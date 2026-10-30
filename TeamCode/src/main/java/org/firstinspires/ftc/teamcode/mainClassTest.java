@@ -35,6 +35,7 @@ public class mainClassTest extends OpMode {
         cameraTest.getCameraInfo();
         odometryTest.getOdoPosHeading();*/
         telemetry.addData("Flywheel velocity:",shooterTest.flywheelvelocity);
+        telemetry.addData("Flywheel target velocity:",shooterTest.TargetVelocity);
         telemetry.update();
     }
 }

@@ -12,12 +12,13 @@ public class ShooterTest {
     boolean bPressed = false;
     boolean xPressed = false;
     boolean flywheelOn = false;
-    double TargetVelocity = 1400;
+    public double TargetVelocity = 1400;
     public double flywheelvelocity;
 
     public ShooterTest(HardwareMap hardwareMap) {
         flywheelMotor = hardwareMap.get (DcMotorEx.class,"flywheelMotor");
         flywheelMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        flywheelMotor.setVelocityPIDFCoefficients(10,0,0,12);
         flywheelMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         flywheelMotor.setPower(0);
 
@@ -40,7 +41,7 @@ public class ShooterTest {
         if (gamepad1.b) {
 
             if (!bPressed) {
-                TargetVelocity = TargetVelocity +100 ;
+                TargetVelocity = TargetVelocity +100;
             }
             bPressed = true;
         }
@@ -51,7 +52,7 @@ public class ShooterTest {
         if (gamepad1.x) {
 
             if (!xPressed) {
-                TargetVelocity = TargetVelocity -100 ;
+                TargetVelocity = Math.max(0, TargetVelocity -100);
             }
             xPressed = true;
         }
@@ -64,7 +65,7 @@ public class ShooterTest {
 
         // Set motor
         if (flywheelOn){
-            flywheelMotor.setVelocity(1400);
+            flywheelMotor.setVelocity(TargetVelocity);
             // flywheelMotor.setPower(0.5);
         }
         else {
