@@ -13,7 +13,7 @@ public class ShooterTest {
     boolean xPressed = false;
     boolean flywheelOn = false;
     public double TargetVelocity = 1400;
-    public double flywheelvelocity;
+    public double flywheelVelocity;
 
     public ShooterTest(HardwareMap hardwareMap) {
         flywheelMotor = hardwareMap.get (DcMotorEx.class,"flywheelMotor");
@@ -71,7 +71,7 @@ public class ShooterTest {
         else {
             flywheelMotor.setPower(0);
         }
-       flywheelvelocity = flywheelMotor.getVelocity();
+       flywheelVelocity = flywheelMotor.getVelocity();
 
     }
     public void flywheelAutoControl() {

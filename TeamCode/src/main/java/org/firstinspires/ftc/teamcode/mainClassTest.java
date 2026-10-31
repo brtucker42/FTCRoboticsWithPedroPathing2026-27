@@ -34,7 +34,7 @@ public class mainClassTest extends OpMode {
         transferTest.transferManualControl(gamepad1);
         cameraTest.getCameraInfo();
         odometryTest.getOdoPosHeading();*/
-        telemetry.addData("Flywheel velocity:",shooterTest.flywheelvelocity);
+        telemetry.addData("Flywheel velocity:",shooterTest.flywheelVelocity);
         telemetry.addData("Flywheel target velocity:",shooterTest.TargetVelocity);
         telemetry.update();
     }
