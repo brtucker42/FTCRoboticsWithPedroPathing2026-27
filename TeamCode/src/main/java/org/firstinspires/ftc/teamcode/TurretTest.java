@@ -17,34 +17,35 @@ public class TurretTest {
 
     public int turretPosition = 0;
 
-    private static final int turretIncrement = 20;
+    private static final int turretIncrement = 5;
 
     public TurretTest(HardwareMap hardwareMap) {
         turretMotor = hardwareMap.get (DcMotorEx.class,"turretMotor");
         turretMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        turretMotor.setVelocityPIDFCoefficients(10,0,0,12);
+        // Not sure if we need these two
+        /* turretMotor.setVelocityPIDFCoefficients(10,0,0,12);
+        turretMotor.setVelocity(1, AngleUnit.DEGREES); */
         turretMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        turretMotor.setVelocity(1, AngleUnit.DEGREES);
         turretMotor.setPower(0.1);
         turretMotor.setTargetPosition(0);
+        turretMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        turretMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
     }
 
 
     public void updateTelemetry(Telemetry telemetry) {
 
-        telemetry.addData("Turret Position",
-                turretMotor.getCurrentPosition());
+        telemetry.addData("Turret Position", turretMotor.getCurrentPosition());
 
-        telemetry.addData("Turret Target",
-                turretPosition);
+        telemetry.addData("Turret Target", turretPosition);
     }
 
     public void turretManualControl(Gamepad gamepad1) {
         turretMotor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         if (gamepad1.dpad_left) {
             if (!leftPressed) {
-                turretPosition -= 1;
+                turretPosition -= turretIncrement;
 
             leftPressed = true;
             }
@@ -55,7 +56,7 @@ public class TurretTest {
 
         if (gamepad1.dpad_right) {
             if (!rightPressed) {
-                turretPosition += 1;
+                turretPosition += turretIncrement;
             }
             rightPressed = true;
         }
