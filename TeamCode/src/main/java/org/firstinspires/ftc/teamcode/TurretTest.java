@@ -14,10 +14,12 @@ public class TurretTest {
 
     boolean leftPressed = false;
     boolean rightPressed = false;
+    double conversionFactor = (99.0/22.0)/3.468;
+    public double motorPosition = 0;
 
-    public int turretPosition = 0;
+    public double turretPosition = 0.0;
 
-    private static final int turretIncrement = 20;
+    private static final double turretIncrement = 30.0;
 
     public TurretTest(HardwareMap hardwareMap) {
         turretMotor = hardwareMap.get (DcMotorEx.class,"turretMotor");
@@ -29,14 +31,20 @@ public class TurretTest {
         turretMotor.setTargetPosition(0);
         turretMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         turretMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        turretMotor.setPower(0.15);
+        turretMotor.setPower(0.5);
 
     }
 
 
     public void updateTelemetry(Telemetry telemetry) {
+        int convertedMotor = turretMotor.getCurrentPosition();
+        convertedMotor = (int) (convertedMotor/conversionFactor);
 
-        telemetry.addData("Turret Position", turretMotor.getCurrentPosition());
+        telemetry.addData("Turret Position", convertedMotor);
+
+        telemetry.addData("Converted Motor Position", convertedMotor);
+
+        telemetry.addData("Motor Position", motorPosition);
 
         telemetry.addData("Turret Target", turretPosition);
     }
@@ -62,10 +70,12 @@ public class TurretTest {
         else {
             rightPressed = false;
         }
-        turretMotor.setTargetPosition(turretPosition);
+        motorPosition = turretPosition * conversionFactor;
+        turretMotor.setTargetPosition((int) (motorPosition));
 
 
     }
+
 
 
 

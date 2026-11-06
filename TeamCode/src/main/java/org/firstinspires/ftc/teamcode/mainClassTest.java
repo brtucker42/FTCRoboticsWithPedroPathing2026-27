@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @TeleOp
 public class mainClassTest extends OpMode {
 
-    TurretTest turretTest;
+    Turret turret;
     DrivetrainTest drivetrainTest;
     ShooterTest shooterTest;
     IntakeTest intakeTest;
@@ -19,7 +19,7 @@ public class mainClassTest extends OpMode {
     public void init() {
         //drivetrainTest = new DrivetrainTest(hardwareMap);
         shooterTest = new ShooterTest(hardwareMap);
-        turretTest = new TurretTest(hardwareMap);
+        turret = new Turret(hardwareMap);
         /*intakeTest = new IntakeTest(hardwareMap);
         transferTest = new TransferTest(hardwareMap);
         cameraTest = new CameraTest(hardwareMap);
@@ -30,17 +30,30 @@ public class mainClassTest extends OpMode {
     public void loop() {
         //drivetrainTest.manualControllerDrive(gamepad1);
         shooterTest.flywheelManualControl(gamepad1);
-        turretTest.turretManualControl(gamepad1);
+        //turret.turretManualControl(gamepad1);
         /*shooterTest.hoodManualControl(gamepad1);
         shooterTest.flywheelManualControl(gamepad1);
         intakeTest.intakeManualControl(gamepad1);
         transferTest.transferManualControl(gamepad1);
         cameraTest.getCameraInfo();
         odometryTest.getOdoPosHeading();*/
+        if (gamepad1.triangleWasPressed()) {
+            turret.moveToPosition(0);
+        }
+        if (gamepad1.circleWasPressed()) {
+            turret.moveToPosition(270);
+        }
+        if (gamepad1.crossWasPressed()) {
+            turret.moveToPosition(180);
+        }
+        if (gamepad1.squareWasPressed()) {
+            turret.moveToPosition(90);
+        }
+        turret.tuneP(gamepad1);
         telemetry.addData("Flywheel velocity:", shooterTest.flywheelVelocity);
         telemetry.addData("Flywheel target velocity:", shooterTest.TargetVelocity);
         //telemetry.addData("Turret Position: ", turretTest.turretPosition);
-        turretTest.updateTelemetry(telemetry);
+        turret.updateTelemetry(telemetry);
 
         telemetry.update();
     }
