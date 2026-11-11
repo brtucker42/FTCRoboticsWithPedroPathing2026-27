@@ -25,8 +25,8 @@ public class sampleBroPathing extends OpMode {
 
     PathState pathState;
 
-    private final Pose startPose = new Pose(56, 8, Math.toRadians(90)));
-    private final Pose shootPose = new Pose(56, 36, Math.toRadians(90)))))));
+    private final Pose startPose = new Pose(56, 8, Math.toRadians(90));
+    private final Pose shootPose = new Pose(56, 36, Math.toRadians(90));
 
     @Override
     public void init() {
