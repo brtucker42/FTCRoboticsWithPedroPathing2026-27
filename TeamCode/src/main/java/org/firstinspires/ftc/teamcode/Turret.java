@@ -24,6 +24,10 @@ public class Turret {
     public double motorPosition = 0;
 
     double p = 11;
+    double i = 1;
+    double d = 0.015;
+    double f = 5;
+
 
     public double turretPosition = 0.0;
 
@@ -34,7 +38,7 @@ public class Turret {
         turretMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         turretMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // Use in the future
-        turretMotor.setVelocityPIDFCoefficients(p,0,0, 0);
+        turretMotor.setVelocityPIDFCoefficients(p,i,d,f);
         //turretMotor.setVelocity(1, AngleUnit.DEGREES);
         turretMotor.setTargetPositionTolerance(3);
         turretMotor.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -54,6 +58,9 @@ public class Turret {
         telemetry.addData("Turret Target", turretPosition);
 
         telemetry.addData("Current P ", p);
+        telemetry.addData("Current I ", i);
+        telemetry.addData("Current D ", d);
+        telemetry.addData("Current F ", f);
     }
 
     public void turretManualControl(Gamepad gamepad1) {
@@ -94,8 +101,8 @@ public class Turret {
     public void tuneP(Gamepad gamepad1) {
         if (gamepad1.dpad_up) {
             if (!upPressed) {
-                p += 1;
-                turretMotor.setVelocityPIDFCoefficients(p,0,0, 0);
+                f += 1;
+                turretMotor.setVelocityPIDFCoefficients(p,i,d, f);
             }
             upPressed = true;
 
@@ -105,8 +112,8 @@ public class Turret {
         }
         if (gamepad1.dpad_down) {
             if (!downPressed) {
-                p -= 1;
-                turretMotor.setVelocityPIDFCoefficients(p,0,0, 0);
+                f -= 1;
+                turretMotor.setVelocityPIDFCoefficients(p,i,d, f);
             }
             downPressed = true;
 
