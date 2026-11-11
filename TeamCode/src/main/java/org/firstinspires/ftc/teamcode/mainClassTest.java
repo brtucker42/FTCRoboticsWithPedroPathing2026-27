@@ -17,9 +17,9 @@ public class mainClassTest extends OpMode {
 
     @Override
     public void init() {
-        //drivetrainTest = new DrivetrainTest(hardwareMap);
-        shooterTest = new ShooterTest(hardwareMap);
-        turret = new Turret(hardwareMap);
+        drivetrainTest = new DrivetrainTest(hardwareMap);
+        //shooterTest = new ShooterTest(hardwareMap);
+        //turret = new Turret(hardwareMap);
         /*intakeTest = new IntakeTest(hardwareMap);
         transferTest = new TransferTest(hardwareMap);
         cameraTest = new CameraTest(hardwareMap);
@@ -28,8 +28,8 @@ public class mainClassTest extends OpMode {
 
     @Override
     public void loop() {
-        //drivetrainTest.manualControllerDrive(gamepad1);
-        shooterTest.flywheelManualControl(gamepad1);
+        drivetrainTest.manualControllerDrive(gamepad1);
+        //shooterTest.flywheelManualControl(gamepad1);
         //turret.turretManualControl(gamepad1);
         /*shooterTest.hoodManualControl(gamepad1);
         shooterTest.flywheelManualControl(gamepad1);
@@ -37,7 +37,7 @@ public class mainClassTest extends OpMode {
         transferTest.transferManualControl(gamepad1);
         cameraTest.getCameraInfo();
         odometryTest.getOdoPosHeading();*/
-        if (gamepad1.triangleWasPressed()) {
+        /*if (gamepad1.triangleWasPressed()) {
             turret.moveToPosition(0);
         }
         if (gamepad1.circleWasPressed()) {
@@ -55,6 +55,6 @@ public class mainClassTest extends OpMode {
         //telemetry.addData("Turret Position: ", turretTest.turretPosition);
         turret.updateTelemetry(telemetry);
 
-        telemetry.update();
+        telemetry.update();*/
     }
 }
