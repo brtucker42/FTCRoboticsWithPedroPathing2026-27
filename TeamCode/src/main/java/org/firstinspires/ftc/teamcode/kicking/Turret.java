@@ -33,7 +33,7 @@ public class Turret {
     private static final double turretIncrement = 30.0;
 
     public Turret(HardwareMap hardwareMap) {
-        turretMotor = hardwareMap.get (DcMotorEx.class,"turretMotor");
+        turretMotor = hardwareMap.get(DcMotorEx.class,"turretMotor");
         turretMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         turretMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // Use in the future
