@@ -23,6 +23,8 @@ public class TurretTest {
 
     public double motorPosition = 0;
 
+
+
     double p = 11;
     double i = 1;
     double d = 0.015;
@@ -67,6 +69,9 @@ public class TurretTest {
         if (gamepad1.dpad_left) {
             if (!leftPressed) {
                 turretPosition -= turretIncrement;
+                if (turretPosition < 0) {
+                    turretPosition += 360;
+                }
 
             }
             leftPressed = true;
@@ -79,6 +84,7 @@ public class TurretTest {
         if (gamepad1.dpad_right) {
             if (!rightPressed) {
                 turretPosition += turretIncrement;
+                turretPosition = turretPosition % 360;
             }
             rightPressed = true;
         }

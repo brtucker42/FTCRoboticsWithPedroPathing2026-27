@@ -20,7 +20,7 @@ public class MainTeleOp extends OpMode {
         // intake = new Intake(hardwareMap);
         transfer = new Transfer(hardwareMap);
         // shooter = new Shooter(hardwareMap);
-        // turret = new Turret(hardwareMap);
+        turret = new Turret(hardwareMap);
         camera = new Camera(hardwareMap);
     }
 
@@ -31,10 +31,10 @@ public class MainTeleOp extends OpMode {
         transfer.manualTransfer(gamepad1);
         // shooter.manualFlywheel(gamepad1);
         // shooter.manualHood(gamepad1);
-        // turret.turretManualControl(gamepad1);
+        turret.turretManualControl(gamepad1);
         camera.getCameraInfo();
 
-        // turret.updateTelemetry(telemetry);
+        turret.updateTelemetry(telemetry);
         drivetrain.updateTelemetry(telemetry);
         // shooter.updateTelemetry(telemetry);
         telemetry.update();
