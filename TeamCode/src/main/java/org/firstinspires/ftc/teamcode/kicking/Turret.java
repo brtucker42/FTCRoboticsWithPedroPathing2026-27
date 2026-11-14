@@ -56,10 +56,10 @@ public class Turret {
 
         telemetry.addData("Turret Target", turretPosition);
 
-        telemetry.addData("Current P ", p);
+        /*telemetry.addData("Current P ", p);
         telemetry.addData("Current I ", i);
         telemetry.addData("Current D ", d);
-        telemetry.addData("Current F ", f);
+        telemetry.addData("Current F ", f);*/
     }
 
     public void turretManualControl(Gamepad gamepad1) {
@@ -83,21 +83,24 @@ public class Turret {
         else {
             rightPressed = false;
         }
-        motorPosition = turretPosition * conversionFactor;
-        turretMotor.setTargetPosition((int) (motorPosition));
-
-
+        moveToPosition((int) (motorPosition));
     }
 
 
     public void moveToPosition(int position_deg) {
+        if (turretPosition > 360) {
+            turretPosition = turretPosition % 360;
+        }
+        if (turretPosition < 0) {
+            turretPosition += 360;
+        }
         turretPosition = position_deg;
         motorPosition = position_deg * conversionFactor;
         turretMotor.setTargetPosition((int) (motorPosition));
 
     }
 
-    public void tuneP(Gamepad gamepad1) {
+    /*public void tuneP(Gamepad gamepad1) {
         if (gamepad1.dpad_up) {
             if (!upPressed) {
                 f += 1;
@@ -123,5 +126,5 @@ public class Turret {
 
 
 
-    }
+    }*/
 }

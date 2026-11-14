@@ -1,19 +1,17 @@
 package org.firstinspires.ftc.teamcode.kicking;
 
 import com.pedropathing.follower.Follower;
-import com.pedropathing.math.Pose;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.pedro.Constants;
 import com.pedropathing.drivetrain.DrivePowers;
 import com.pedropathing.follower.ManualDrive;
+import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 // This class is basic field centric drivetrain code using odometry, it does not keep the pose from auto, that feature is to be added.
 
-// @TeleOp
 public class Drivetrain {
 
     private Follower follower;
