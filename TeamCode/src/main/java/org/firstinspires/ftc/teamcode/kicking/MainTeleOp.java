@@ -22,6 +22,7 @@ public class MainTeleOp extends OpMode {
         // shooter = new Shooter(hardwareMap);
         // turret = new Turret(hardwareMap);
         camera = new Camera(hardwareMap);
+        camera.init();
     }
 
     @Override
@@ -32,7 +33,9 @@ public class MainTeleOp extends OpMode {
         // shooter.manualFlywheel(gamepad1);
         // shooter.manualHood(gamepad1);
         // turret.turretManualControl(gamepad1);
-        camera.getCameraInfo();
+
+        telemetry.addData("tx", camera.getXOffset(true));
+        telemetry.addData("ty", camera.getYOffset(true));
 
         // turret.updateTelemetry(telemetry);
         drivetrain.updateTelemetry(telemetry);

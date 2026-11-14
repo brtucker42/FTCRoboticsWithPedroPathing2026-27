@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 // This class is basic field centric drivetrain code using odometry, it does not keep the pose from auto, that feature is to be added.
 
-@TeleOp
+// @TeleOp
 public class Drivetrain {
 
     private Follower follower;
