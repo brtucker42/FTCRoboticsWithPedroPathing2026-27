@@ -94,7 +94,18 @@ public class TurretTest {
         motorPosition = turretPosition * conversionFactor;
         turretMotor.setTargetPosition((int) (motorPosition));
 
-
+        if (gamepad1.triangleWasPressed()) {
+            moveToPosition(0);
+        }
+        if (gamepad1.squareWasPressed()) {
+            moveToPosition(90);
+        }
+        if (gamepad1.crossWasPressed()) {
+            moveToPosition(180);
+        }
+        if (gamepad1.circleWasPressed()) {
+            moveToPosition(270);
+        }
     }
 
 
@@ -105,7 +116,7 @@ public class TurretTest {
 
     }
 
-    public void tuneP(Gamepad gamepad1) {
+    /*public void tuneP(Gamepad gamepad1) {
         if (gamepad1.dpad_up) {
             if (!upPressed) {
                 f += 1;
@@ -131,5 +142,5 @@ public class TurretTest {
 
 
 
-    }
+    }*/
 }

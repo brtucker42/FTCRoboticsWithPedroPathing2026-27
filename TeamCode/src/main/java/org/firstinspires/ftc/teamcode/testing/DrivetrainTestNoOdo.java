@@ -1,4 +1,3 @@
-/*
 package org.firstinspires.ftc.teamcode.testing;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -6,14 +5,14 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class DrivetrainTest {
+public class DrivetrainTestNoOdo {
 
     DcMotor frontLeftMotor;
     DcMotor frontRightMotor;
     DcMotor backLeftMotor;
     DcMotor backRightMotor;
 
-    public DrivetrainTest(HardwareMap hardwareMap) {
+    public DrivetrainTestNoOdo(HardwareMap hardwareMap) {
         frontLeftMotor  = hardwareMap.dcMotor.get("frontLeftMotor");
         backLeftMotor   = hardwareMap.dcMotor.get("backLeftMotor");
         frontRightMotor = hardwareMap.dcMotor.get("frontRightMotor");
@@ -33,7 +32,7 @@ public class DrivetrainTest {
         backRightMotor.setPower(0);
     }
 
-    public void manualControllerDrive(Gamepad gamepad1) {
+    public void manualDrive(Gamepad gamepad1) {
 
         double jy = gamepad1.left_stick_y * gamepad1.left_stick_y * gamepad1.left_stick_y; // Remember, Y stick value is reversed
         double jx = -gamepad1.left_stick_x * -gamepad1.left_stick_x * -gamepad1.left_stick_x; // Counteract imperfect strafing
@@ -51,4 +50,3 @@ public class DrivetrainTest {
         backRightMotor.setPower(backRightPower);
     }
 }
-*/
