@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.testing;
 
+import com.pedropathing.api.PoseFactory;
 import com.pedropathing.follower.Follower;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -14,10 +15,13 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class DrivetrainTestOdo {
 
-    private Follower follower;
+    public Follower follower;
+    private final PoseFactory poseFactory = PoseFactory.degrees();
+    private final Pose startPose = poseFactory.of(24, 24, 0);
 
     public DrivetrainTestOdo(HardwareMap hardwareMap) {
         follower = Constants.create(hardwareMap);
+        follower.setPose(startPose);
     }
 
     public void manualDrive(Gamepad gamepad1) {

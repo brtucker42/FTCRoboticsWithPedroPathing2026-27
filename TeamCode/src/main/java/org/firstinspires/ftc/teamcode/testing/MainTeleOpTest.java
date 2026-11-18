@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.testing;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import org.firstinspires.ftc.teamcode.testing.DrivetrainTestOdo;
 
 @TeleOp
 public class MainTeleOpTest extends OpMode {
@@ -11,6 +12,7 @@ public class MainTeleOpTest extends OpMode {
     //Transfer transfer;
     //Shooter shooter;
     TurretTest turretTest;
+    TurretAutoTest turretAutoTest;
     //Camera camera;
 
 
@@ -20,7 +22,8 @@ public class MainTeleOpTest extends OpMode {
         // intake = new Intake(hardwareMap);
         // transfer = new Transfer(hardwareMap);
         // shooter = new Shooter(hardwareMap);
-        turretTest = new TurretTest(hardwareMap);
+        // turretTest = new TurretTest(hardwareMap);
+        turretAutoTest = new TurretAutoTest(hardwareMap);
         // camera = new Camera(hardwareMap);
     }
 
@@ -31,11 +34,13 @@ public class MainTeleOpTest extends OpMode {
         // transfer.manualTransfer(gamepad1);
         // shooter.manualFlywheel(gamepad1);
         // shooter.manualHood(gamepad1);
-        turretTest.turretManualControl(gamepad1);
+        // turretTest.turretManualControl(gamepad1);
+        turretAutoTest.turretAutoAim(drivetrainTest);
         // camera.getCameraInfo();
 
         drivetrainTest.updateTelemetry(telemetry);
-        turretTest.updateTelemetry(telemetry);
+        // turretTest.updateTelemetry(telemetry);
+        turretAutoTest.updateTelemetry(telemetry);
         // shooter.updateTelemetry(telemetry);
         telemetry.update();
     }
