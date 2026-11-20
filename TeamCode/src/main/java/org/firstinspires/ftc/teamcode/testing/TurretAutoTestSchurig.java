@@ -5,13 +5,11 @@ import static java.lang.Math.atan;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import org.firstinspires.ftc.teamcode.testing.DrivetrainTestOdo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class TurretAutoTest{
+public class TurretAutoTestSchurig {
     DcMotorEx turretMotor;
     double ticksPerRev = 3.468;
 
@@ -32,7 +30,7 @@ public class TurretAutoTest{
 
     private static final double turretIncrement = 30.0;
 
-    public TurretAutoTest(HardwareMap hardwareMap) {
+    public TurretAutoTestSchurig(HardwareMap hardwareMap) {
         turretMotor = hardwareMap.get(DcMotorEx.class,"turretMotor");
         turretMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         turretMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -74,6 +72,11 @@ public class TurretAutoTest{
         double robotX = drivetrainTestOdo.follower.pose().x();
         double robotY = drivetrainTestOdo.follower.pose().y();
         double robotHeading = Math.toDegrees(drivetrainTestOdo.follower.pose().heading());
+
+        double rad = Math.atan2(robotY, robotX);
+        double deg = Math.toDegrees(rad);
+        moveToPosition(deg - (360 - robotHeading));
+
 
         if (robotX > 0) {
             centerAngle = (Math.toDegrees(atan(robotY / robotX))) + 180;

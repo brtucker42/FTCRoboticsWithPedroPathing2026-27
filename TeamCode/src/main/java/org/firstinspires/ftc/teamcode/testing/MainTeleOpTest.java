@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.testing;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import org.firstinspires.ftc.teamcode.testing.DrivetrainTestOdo;
 
 @TeleOp
 public class MainTeleOpTest extends OpMode {
@@ -12,7 +11,8 @@ public class MainTeleOpTest extends OpMode {
     //Transfer transfer;
     //Shooter shooter;
     TurretTest turretTest;
-    TurretAutoTest turretAutoTest;
+    TurretAutoTestFelix turretAutoTest;
+    // TurretAutoTestSchurig turretAutoTest;
     //Camera camera;
 
 
@@ -23,7 +23,8 @@ public class MainTeleOpTest extends OpMode {
         // transfer = new Transfer(hardwareMap);
         // shooter = new Shooter(hardwareMap);
         // turretTest = new TurretTest(hardwareMap);
-        turretAutoTest = new TurretAutoTest(hardwareMap);
+        turretAutoTest = new TurretAutoTestFelix(hardwareMap);
+        // turretAutoTest = new TurretAutoTestSchurig(hardwareMap);
         // camera = new Camera(hardwareMap);
     }
 
