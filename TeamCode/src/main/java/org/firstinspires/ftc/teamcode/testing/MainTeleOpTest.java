@@ -11,8 +11,8 @@ public class MainTeleOpTest extends OpMode {
     //Transfer transfer;
     //Shooter shooter;
     TurretTest turretTest;
-    TurretAutoTestFelix turretAutoTest;
-    // TurretAutoTestSchurig turretAutoTest;
+    // TurretAutoTestFelix turretAutoTest;
+    TurretAutoTestSchurig turretAutoTest;
     //Camera camera;
 
 
@@ -23,8 +23,8 @@ public class MainTeleOpTest extends OpMode {
         // transfer = new Transfer(hardwareMap);
         // shooter = new Shooter(hardwareMap);
         // turretTest = new TurretTest(hardwareMap);
-        turretAutoTest = new TurretAutoTestFelix(hardwareMap);
-        // turretAutoTest = new TurretAutoTestSchurig(hardwareMap);
+        // turretAutoTest = new TurretAutoTestFelix(hardwareMap);
+        turretAutoTest = new TurretAutoTestSchurig(hardwareMap);
         // camera = new Camera(hardwareMap);
     }
 
@@ -36,7 +36,7 @@ public class MainTeleOpTest extends OpMode {
         // shooter.manualFlywheel(gamepad1);
         // shooter.manualHood(gamepad1);
         // turretTest.turretManualControl(gamepad1);
-        turretAutoTest.turretAutoAim(drivetrainTest);
+        turretAutoTest.turretAutoAim(drivetrainTest, telemetry);
         // camera.getCameraInfo();
 
         drivetrainTest.updateTelemetry(telemetry);
