@@ -21,17 +21,11 @@ public class Camera {
         limelight.start();
     }
 
-    public boolean seeBarcode(boolean posSide) {
-        if(posSide){
-            //look for pos barcode
-        }
-        else{
-            //look for neg barcode
-        }
+    public boolean seeBarcode() {
         return true;
     }
 
-    public double getXOffset(boolean posSide) {
+    public double getXOffset() {
         LLResult result = limelight.getLatestResult();
         double Tx = 0.0;
         if (result != null) {
@@ -43,7 +37,7 @@ public class Camera {
         return Tx;
     }
 
-    public double getYOffset(boolean posSide) {
+    public double getYOffset() {
         LLResult result = limelight.getLatestResult();
         double Ty = 0.0;
         if (result != null) {
@@ -53,5 +47,9 @@ public class Camera {
             }
         }
         return Ty;
+    }
+
+    public void setTarget(int target) {
+        limelight.pipelineSwitch(target);
     }
 }

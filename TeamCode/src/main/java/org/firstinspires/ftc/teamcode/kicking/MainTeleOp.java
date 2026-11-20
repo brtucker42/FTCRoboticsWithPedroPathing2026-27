@@ -14,6 +14,12 @@ public class MainTeleOp extends OpMode {
     Camera camera;
 
 
+    int blueSco = 0;
+    int blueAud = 1;
+    int redSco = 2;
+    int redAud = 3;
+
+
     @Override
     public void init() {
         drivetrain = new Drivetrain(hardwareMap);
@@ -34,8 +40,8 @@ public class MainTeleOp extends OpMode {
         // shooter.manualHood(gamepad1);
         // turret.turretManualControl(gamepad1);
 
-        telemetry.addData("tx", camera.getXOffset(true));
-        telemetry.addData("ty", camera.getYOffset(true));
+        telemetry.addData("tx", camera.getXOffset());
+        telemetry.addData("ty", camera.getYOffset());
 
         // turret.updateTelemetry(telemetry);
         drivetrain.updateTelemetry(telemetry);
