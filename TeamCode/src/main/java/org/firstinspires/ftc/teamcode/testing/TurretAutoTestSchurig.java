@@ -68,32 +68,19 @@ public class TurretAutoTestSchurig {
 
     }
 
-    public void turretAutoAim(DrivetrainTestOdo drivetrainTestOdo) {
+    public void turretAutoAim(DrivetrainTestOdo drivetrainTestOdo, Telemetry telemetry) {
         double robotX = drivetrainTestOdo.follower.pose().x();
         double robotY = drivetrainTestOdo.follower.pose().y();
         double robotHeading = Math.toDegrees(drivetrainTestOdo.follower.pose().heading());
 
         double rad = Math.atan2(robotY, robotX);
         double deg = Math.toDegrees(rad);
-        moveToPosition(deg - (360 - robotHeading));
-
-
-        if (robotX > 0) {
-            centerAngle = (Math.toDegrees(atan(robotY / robotX))) + 180;
+        if (deg < 0) {
+            deg += 360;
         }
-        else if (robotX < 0) {
-            centerAngle = ((Math.toDegrees(atan(robotY/robotX))) + 360) % 360;
-        }
-        else {
-            if (robotY > 0) {
-                centerAngle = 270;
-            }
-            else {
-                centerAngle = 90;
-            }
-        }
-
-        moveToPosition(centerAngle - robotHeading);
-
+        // moveToPosition((deg - (360 - robotHeading)));
+        telemetry.addData("Robot heading", robotHeading);
+        telemetry.addData("Angle determined from field x,y pos", deg);
+        telemetry.addData("Turret target angle", (((deg + 180) % 360) - robotHeading));
     }
 }
