@@ -38,12 +38,12 @@ public class MainTeleOp extends OpMode {
         transfer.manualTransfer(gamepad1);
         shooter.manualFlywheel(gamepad1);
         shooter.manualHood(gamepad1);
-        turret.turretManualControl(gamepad1);
+        turret.turretAutoAim(drivetrain, telemetry);
 
         telemetry.addData("tx", camera.getXOffset());
         telemetry.addData("ty", camera.getYOffset());
 
-        turret.updateTelemetry(telemetry);
+        turret.updateTelemetry(drivetrain, telemetry);
         drivetrain.updateTelemetry(telemetry);
         shooter.updateTelemetry(telemetry);
         telemetry.update();
