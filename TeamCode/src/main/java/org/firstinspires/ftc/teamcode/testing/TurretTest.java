@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.testing;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -7,9 +7,9 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
-public class Turret {
+
+public class TurretTest {
     DcMotorEx turretMotor;
 
     boolean leftPressed = false;
@@ -23,25 +23,31 @@ public class Turret {
 
     public double motorPosition = 0;
 
+
+
     double p = 11;
+    double i = 1;
+    double d = 0.015;
+    double f = 5;
+
 
     public double turretPosition = 0.0;
 
     private static final double turretIncrement = 30.0;
 
-    public Turret(HardwareMap hardwareMap) {
-        turretMotor = hardwareMap.get (DcMotorEx.class,"turretMotor");
+    public TurretTest(HardwareMap hardwareMap) {
+        turretMotor = hardwareMap.get(DcMotorEx.class,"turretMotor");
         turretMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         turretMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // Use in the future
-        turretMotor.setVelocityPIDFCoefficients(p,0,0, 0);
+        turretMotor.setVelocityPIDFCoefficients(p,i,d,f);
         //turretMotor.setVelocity(1, AngleUnit.DEGREES);
         turretMotor.setTargetPositionTolerance(3);
         turretMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         turretMotor.setTargetPosition(0);
         turretMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         turretMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        turretMotor.setPower(0.5);
+        turretMotor.setPower(0.25);
 
     }
 
@@ -54,12 +60,19 @@ public class Turret {
         telemetry.addData("Turret Target", turretPosition);
 
         telemetry.addData("Current P ", p);
+        telemetry.addData("Current I ", i);
+        telemetry.addData("Current D ", d);
+        telemetry.addData("Current F ", f);
     }
 
     public void turretManualControl(Gamepad gamepad1) {
         if (gamepad1.dpad_left) {
             if (!leftPressed) {
                 turretPosition -= turretIncrement;
+                if (turretPosition < 0) {
+                    turretPosition += 360;
+                }
+
             }
             leftPressed = true;
 
@@ -71,6 +84,7 @@ public class Turret {
         if (gamepad1.dpad_right) {
             if (!rightPressed) {
                 turretPosition += turretIncrement;
+                turretPosition = turretPosition % 360;
             }
             rightPressed = true;
         }
@@ -80,7 +94,18 @@ public class Turret {
         motorPosition = turretPosition * conversionFactor;
         turretMotor.setTargetPosition((int) (motorPosition));
 
-
+        if (gamepad1.triangleWasPressed()) {
+            moveToPosition(0);
+        }
+        if (gamepad1.squareWasPressed()) {
+            moveToPosition(90);
+        }
+        if (gamepad1.crossWasPressed()) {
+            moveToPosition(180);
+        }
+        if (gamepad1.circleWasPressed()) {
+            moveToPosition(270);
+        }
     }
 
 
@@ -91,11 +116,11 @@ public class Turret {
 
     }
 
-    public void tuneP(Gamepad gamepad1) {
+    /*public void tuneP(Gamepad gamepad1) {
         if (gamepad1.dpad_up) {
             if (!upPressed) {
-                p += 1;
-                turretMotor.setVelocityPIDFCoefficients(p,0,0, 0);
+                f += 1;
+                turretMotor.setVelocityPIDFCoefficients(p,i,d, f);
             }
             upPressed = true;
 
@@ -105,8 +130,8 @@ public class Turret {
         }
         if (gamepad1.dpad_down) {
             if (!downPressed) {
-                p -= 1;
-                turretMotor.setVelocityPIDFCoefficients(p,0,0, 0);
+                f -= 1;
+                turretMotor.setVelocityPIDFCoefficients(p,i,d, f);
             }
             downPressed = true;
 
@@ -117,5 +142,5 @@ public class Turret {
 
 
 
-    }
+    }*/
 }

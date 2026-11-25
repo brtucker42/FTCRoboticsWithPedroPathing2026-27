@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.kicking;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -6,7 +6,9 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class ShooterTest {
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
+public class Shooter {
     DcMotorEx flywheelMotor;
     boolean aPressed = false;
     boolean bPressed = false;
@@ -15,8 +17,8 @@ public class ShooterTest {
     public double TargetVelocity = 1400;
     public double flywheelVelocity;
 
-    public ShooterTest(HardwareMap hardwareMap) {
-        flywheelMotor = hardwareMap.get (DcMotorEx.class,"flywheelMotor");
+    public Shooter(HardwareMap hardwareMap) {
+        flywheelMotor = hardwareMap.get(DcMotorEx.class,"flywheelMotor");
         flywheelMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         flywheelMotor.setVelocityPIDFCoefficients(10,0,0,12);
         flywheelMotor.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -24,9 +26,7 @@ public class ShooterTest {
 
     }
 
-
-
-    public void flywheelManualControl(Gamepad gamepad1) {
+    public void manualFlywheel(Gamepad gamepad1) {
 
         // Set variables
         if (gamepad1.a) {
@@ -38,10 +38,11 @@ public class ShooterTest {
         else {
             aPressed = false;
         }
+
         if (gamepad1.b) {
 
             if (!bPressed) {
-                TargetVelocity = TargetVelocity +100;
+                TargetVelocity += 100;
             }
             bPressed = true;
         }
@@ -60,9 +61,6 @@ public class ShooterTest {
             xPressed = false;
         }
 
-
-
-
         // Set motor
         if (flywheelOn){
             flywheelMotor.setVelocity(TargetVelocity);
@@ -71,22 +69,25 @@ public class ShooterTest {
         else {
             flywheelMotor.setPower(0);
         }
-       flywheelVelocity = flywheelMotor.getVelocity();
+
+        flywheelVelocity = flywheelMotor.getVelocity();
 
     }
-    public void flywheelAutoControl() {
+
+    public void autoFlywheel() {
 
     }
-    public void hoodManualControl(Gamepad gamepad1) {
+
+    public void manualHood(Gamepad gamepad1) {
 
     }
-    public void hoodAutoControl() {
+
+    public void autoHood() {
 
     }
-    public void turretManualControl(Gamepad gamepad1) {
 
-    }
-    public void turretAutoControl() {
-
+    public void updateTelemetry(Telemetry telemetry) {
+        telemetry.addData("Flywheel velocity: ", flywheelVelocity);
+        telemetry.addData("Flywheel target velocity: ", TargetVelocity);
     }
 }
