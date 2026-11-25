@@ -20,11 +20,11 @@ public class Intake {
     }
 
     public void intake(Gamepad gamepad1) {
-        if (gamepad1.rightBumperWasPressed()) {
+        if (gamepad1.right_bumper) {
             intakeMotor.setDirection (DcMotorSimple.Direction.FORWARD);
             intakeMotor.setPower(power);
         }
-        else if (gamepad1.leftBumperWasPressed()) {
+        else if (gamepad1.left_bumper) {
             intakeMotor.setDirection (DcMotorSimple.Direction.REVERSE);
             intakeMotor.setPower(power);
         }
