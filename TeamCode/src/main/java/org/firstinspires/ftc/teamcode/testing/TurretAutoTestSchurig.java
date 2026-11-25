@@ -56,15 +56,17 @@ public class TurretAutoTestSchurig {
     }
 
     public void moveToPosition(double position_deg) {
-        if (turretPosition > 360) {
-            turretPosition = turretPosition % 360;
+        if (!turretMotor.isBusy()) {
+            if (turretPosition > 360) {
+                turretPosition = turretPosition % 360;
+            }
+            if (turretPosition < 0) {
+                turretPosition += 360;
+            }
+            turretPosition = position_deg;
+            motorPosition = position_deg * conversionFactor;
+            turretMotor.setTargetPosition((int) (motorPosition));
         }
-        if (turretPosition < 0) {
-            turretPosition += 360;
-        }
-        turretPosition = position_deg;
-        motorPosition = position_deg * conversionFactor;
-        turretMotor.setTargetPosition((int) (motorPosition));
 
     }
 
