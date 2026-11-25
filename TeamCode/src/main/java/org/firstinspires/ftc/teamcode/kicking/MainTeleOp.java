@@ -10,7 +10,7 @@ public class MainTeleOp extends OpMode {
     Intake intake;
     Transfer transfer;
     Shooter shooter;
-    Turret turret;
+    //Turret turret;
     Camera camera;
 
 
@@ -34,7 +34,7 @@ public class MainTeleOp extends OpMode {
     @Override
     public void loop() {
         drivetrain.manualDrive(gamepad1);
-        // intake.intake(gamepad1);
+        intake.intake(gamepad1);
         transfer.manualTransfer(gamepad1);
         // shooter.manualFlywheel(gamepad1);
         // shooter.manualHood(gamepad1);

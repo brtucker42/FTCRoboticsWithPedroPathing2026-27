@@ -9,6 +9,8 @@ public class Intake {
 
     DcMotor intakeMotor;
 
+    double power = 0.5;
+
     public Intake(HardwareMap hardwareMap) {
 
         intakeMotor = hardwareMap.dcMotor.get ("intakeMotor");
@@ -18,13 +20,13 @@ public class Intake {
     }
 
     public void intake(Gamepad gamepad1) {
-        if (gamepad1.right_bumper) {
+        if (gamepad1.rightBumperWasPressed()) {
             intakeMotor.setDirection (DcMotorSimple.Direction.FORWARD);
-            intakeMotor.setPower(1);
+            intakeMotor.setPower(power);
         }
-        else if (gamepad1.left_bumper) {
+        else if (gamepad1.leftBumperWasPressed()) {
             intakeMotor.setDirection (DcMotorSimple.Direction.REVERSE);
-            intakeMotor.setPower(1);
+            intakeMotor.setPower(power);
         }
         else {
             intakeMotor.setPower(0);
