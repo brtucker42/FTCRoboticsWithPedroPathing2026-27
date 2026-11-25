@@ -10,11 +10,10 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Shooter {
     DcMotorEx flywheelMotor;
-    boolean aPressed = false;
-    boolean bPressed = false;
-    boolean xPressed = false;
     boolean flywheelOn = false;
     public double TargetVelocity = 1400;
+
+    public double range = 25;
     public double flywheelVelocity;
 
     public Shooter(HardwareMap hardwareMap) {
@@ -29,37 +28,19 @@ public class Shooter {
     public void manualFlywheel(Gamepad gamepad1) {
 
         // Set variables
-        if (gamepad1.a) {
-            if (!aPressed) {
-                flywheelOn = !flywheelOn;
-            }
-            aPressed = true;
-        }
-        else {
-            aPressed = false;
+        if (gamepad1.aWasPressed()) {
+            flywheelOn = true;
         }
 
-        if (gamepad1.b) {
 
-            if (!bPressed) {
-                TargetVelocity += 100;
-            }
-            bPressed = true;
-        }
-        else {
-            bPressed = false;
+        if (gamepad1.bWasPressed()) {
+            TargetVelocity += 100;
         }
 
         if (gamepad1.x) {
+            TargetVelocity = Math.max(0, TargetVelocity -100);
+        }
 
-            if (!xPressed) {
-                TargetVelocity = Math.max(0, TargetVelocity -100);
-            }
-            xPressed = true;
-        }
-        else {
-            xPressed = false;
-        }
 
         // Set motor
         if (flywheelOn){
@@ -89,5 +70,6 @@ public class Shooter {
     public void updateTelemetry(Telemetry telemetry) {
         telemetry.addData("Flywheel velocity: ", flywheelVelocity);
         telemetry.addData("Flywheel target velocity: ", TargetVelocity);
+        telemetry.addData("Range: ", range);
     }
 }
