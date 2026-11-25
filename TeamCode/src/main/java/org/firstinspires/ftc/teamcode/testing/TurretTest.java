@@ -39,7 +39,6 @@ public class TurretTest {
         turretMotor = hardwareMap.get(DcMotorEx.class,"turretMotor");
         turretMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         turretMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        // Use in the future
         turretMotor.setVelocityPIDFCoefficients(p,i,d,f);
         //turretMotor.setVelocity(1, AngleUnit.DEGREES);
         turretMotor.setTargetPositionTolerance(3);
@@ -110,10 +109,11 @@ public class TurretTest {
 
 
     public void moveToPosition(int position_deg) {
-        turretPosition = position_deg;
-        motorPosition = position_deg * conversionFactor;
-        turretMotor.setTargetPosition((int) (motorPosition));
-
+        if (!turretMotor.isBusy()) {
+            turretPosition = position_deg;
+            motorPosition = position_deg * conversionFactor;
+            turretMotor.setTargetPosition((int) (motorPosition));
+        }
     }
 
     /*public void tuneP(Gamepad gamepad1) {
