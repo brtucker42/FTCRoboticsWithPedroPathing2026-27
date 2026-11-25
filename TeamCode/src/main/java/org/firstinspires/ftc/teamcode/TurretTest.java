@@ -25,8 +25,8 @@ public class TurretTest {
         turretMotor = hardwareMap.get (DcMotorEx.class,"turretMotor");
         turretMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         // Use in the future
-        /* turretMotor.setVelocityPIDFCoefficients(10,0,0,12);
-        turretMotor.setVelocity(1, AngleUnit.DEGREES); */
+        // turretMotor.setVelocityPIDFCoefficients(10,0,0,12);
+        turretMotor.setVelocity(1, AngleUnit.DEGREES);
         turretMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         turretMotor.setTargetPosition(0);
         turretMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
