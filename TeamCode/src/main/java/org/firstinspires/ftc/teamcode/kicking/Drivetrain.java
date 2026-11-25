@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.kicking;
 
+import com.pedropathing.api.PoseFactory;
 import com.pedropathing.follower.Follower;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -10,25 +11,28 @@ import com.pedropathing.math.Pose;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-// This class is basic field centric drivetrain code using odometry, it does not keep the pose from auto, that feature is to be added.
+// This class is basic bot centric drivetrain code using odometry. It does not keep pose from
+// auto (that'll be added later), instead it just starts 24 inches up and right on the field,
+// initial heading set to 0 (facing right).
 
 public class Drivetrain {
 
-    private Follower follower;
+    public Follower follower;
+    private final PoseFactory poseFactory = PoseFactory.degrees();
+    private final Pose startPose = poseFactory.of(24, 24, 0);
 
     public Drivetrain(HardwareMap hardwareMap) {
         follower = Constants.create(hardwareMap);
+        follower.setPose(startPose);
     }
 
     public void manualDrive(Gamepad gamepad1) {
-        DrivePowers powers = ManualDrive.fieldCentric(
-                -gamepad1.left_stick_y * gamepad1.left_stick_y * gamepad1.left_stick_y,
-                -gamepad1.left_stick_x * gamepad1.left_stick_x * gamepad1.left_stick_x,
-                -gamepad1.right_stick_x * gamepad1.right_stick_x * gamepad1.right_stick_x,
-                follower.pose().heading()
+        follower.manual(
+                -gamepad1.left_stick_y,
+                -gamepad1.left_stick_x,
+                -gamepad1.right_stick_x
         );
 
-        follower.manual(powers);
         follower.update();
     }
 

@@ -7,9 +7,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class MainTeleOpTest extends OpMode {
 
     DrivetrainTestOdo drivetrainTest;
-    //Intake intake;
-    //Transfer transfer;
-    //Shooter shooter;
+    IntakeTest intake;
+    // Transfer transfer;
+    // Shooter shooter;
     TurretTest turretTest;
     // TurretAutoTestFelix turretAutoTest;
     TurretAutoTestSchurig turretAutoTest;
@@ -19,7 +19,7 @@ public class MainTeleOpTest extends OpMode {
     @Override
     public void init() {
         drivetrainTest = new DrivetrainTestOdo(hardwareMap);
-        // intake = new Intake(hardwareMap);
+        intake = new IntakeTest(hardwareMap);
         // transfer = new Transfer(hardwareMap);
         // shooter = new Shooter(hardwareMap);
         // turretTest = new TurretTest(hardwareMap);
@@ -31,7 +31,7 @@ public class MainTeleOpTest extends OpMode {
     @Override
     public void loop() {
         drivetrainTest.manualDrive(gamepad1);
-        // intake.intake(gamepad1);
+        intake.intake(gamepad1);
         // transfer.manualTransfer(gamepad1);
         // shooter.manualFlywheel(gamepad1);
         // shooter.manualHood(gamepad1);

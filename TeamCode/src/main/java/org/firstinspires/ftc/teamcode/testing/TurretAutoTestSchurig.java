@@ -25,6 +25,7 @@ public class TurretAutoTestSchurig {
 
     double centerAngle = 0;
 
+    int turretTolerance = 5;
 
     public double turretPosition = 0.0;
 
@@ -37,7 +38,7 @@ public class TurretAutoTestSchurig {
         // Use in the future
         turretMotor.setVelocityPIDFCoefficients(p,i,d,f);
         //turretMotor.setVelocity(1, AngleUnit.DEGREES);
-        turretMotor.setTargetPositionTolerance(3);
+        turretMotor.setTargetPositionTolerance(turretTolerance);
         turretMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         turretMotor.setTargetPosition(0);
         turretMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -57,14 +58,14 @@ public class TurretAutoTestSchurig {
 
     public void moveToPosition(double position_deg) {
         if (!turretMotor.isBusy()) {
+            turretPosition = position_deg;
             if (turretPosition > 360) {
                 turretPosition = turretPosition % 360;
             }
             if (turretPosition < 0) {
                 turretPosition += 360;
             }
-            turretPosition = position_deg;
-            motorPosition = position_deg * conversionFactor;
+            motorPosition = turretPosition * conversionFactor;
             turretMotor.setTargetPosition((int) (motorPosition));
         }
 
@@ -80,9 +81,13 @@ public class TurretAutoTestSchurig {
         if (deg < 0) {
             deg += 360;
         }
-        // moveToPosition((deg - (360 - robotHeading)));
+
+        moveToPosition((((deg + 180) % 360) - robotHeading));
+
         telemetry.addData("Robot heading", robotHeading);
         telemetry.addData("Angle determined from field x,y pos", deg);
-        telemetry.addData("Turret target angle", (((deg + 180) % 360) - robotHeading));
+        telemetry.addData("Current turret position (angle)", turretPosition);
+        telemetry.addData("Turret target position (angle)", (((deg + 180) % 360) - robotHeading));
+
     }
 }
